@@ -1,3 +1,7 @@
+
+
+import Enums.Comportamento;
+
 public class Pessoa_educada extends Pessoa {
     private static int quantidade_educado;
 

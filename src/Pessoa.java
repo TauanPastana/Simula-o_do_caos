@@ -1,8 +1,14 @@
 
+
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+
+import Enums.Comportamento;
+import Enums.EstadoPorta;
+import Padroes_Projetos.Utilidades;
 
 public abstract class Pessoa {
     private Comportamento tipo;

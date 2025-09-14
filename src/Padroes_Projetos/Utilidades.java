@@ -1,11 +1,12 @@
+package Padroes_Projetos;
 import java.util.Random;
 import java.util.Scanner;
 
 
 public class Utilidades {
     private static Utilidades instance;
-    private Scanner scanner;
-    private Random random;
+    private final Scanner scanner;
+    private final Random random;
     
 
     private Utilidades() {

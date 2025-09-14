@@ -1,3 +1,4 @@
+package Enums;
 public enum Comportamento {
     EDUCADO(90),
     MAL_EDUCADO(20);

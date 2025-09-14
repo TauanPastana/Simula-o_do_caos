@@ -1,5 +1,5 @@
-import java.util.ArrayList;
-import java.util.List;
+import Enums.EstadoPorta;
+import Padroes_Projetos.Observavel;
 
 public class Banheiro implements Observavel {
 
@@ -11,50 +11,37 @@ public class Banheiro implements Observavel {
     private static int quantidade;
     private static int quantidade_abertos;
     private static int quantidade_fechados;
-    private List<Probabilidades> observadores;
+    
     
     public Banheiro(){
         this.id = quantidade+1;
         this.ocupacao = EstadoPorta.ABERTO;
         quantidade++;
         quantidade_abertos++;
-        this.observadores = new ArrayList<>();
     }
     
-    @Override
-    public void registrarObservador(Probabilidades observador) {
-        observadores.add(observador);
-    }
+    
     
     @Override
-    public void notificarObservadores(String evento, Object dados) {
-        for (Probabilidades observador : observadores) {
-            switch (evento) {
-                case "USO_BANHEIRO":
-                observador.registrarUsoBemSucedido(this.id);
-                break;
-                case "ESTADO_PORTA":
-                observador.registrarEstadoPorta((EstadoPorta) dados);
-                break;
-                // outros casos conforme necessário
-            }   
-        }
-    }
+    public void notificarObservadores(String evento) {
+        Simulador.getColetorProbabilidades().Notificar(evento);
+    
+}
     
     public void usarBanheiro(Pessoa pessoa){
         this.ocupacao = EstadoPorta.FECHADO;
-        notificarObservadores("USO_BANHEIRO", null);
+        notificarObservadores("USO_BEM_SUCEDIDO");
     }
     
     public void sairBanheiro(int chance){
         if (chance > 60){
             this.ocupacao = EstadoPorta.ABERTO;
-            notificarObservadores("ESTADO_PORTA", EstadoPorta.ABERTO);
+            notificarObservadores("PORTA_ABERTA");
         } else{
             this.ocupacao = EstadoPorta.FECHADO;
             quantidade_abertos--;
             quantidade_fechados++;
-            notificarObservadores("ESTADO_PORTA", EstadoPorta.FECHADO);
+            notificarObservadores("PORTA_FECHADA");
         }
     }
     
@@ -97,13 +84,6 @@ public class Banheiro implements Observavel {
         this.ocupacao = ocupacao;
     }
 
-    public List<Probabilidades> getObservadores() {
-        return observadores;
-    }
-
-    public void setObservadores(List<Probabilidades> observadores) {
-        this.observadores = observadores;
-    }
 
     
 }
