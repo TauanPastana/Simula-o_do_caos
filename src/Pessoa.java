@@ -32,11 +32,11 @@ public abstract class Pessoa {
 
     public int gerarChance(Utilidades instancia) {
         int chanceBase = this.tipo.getChanceBase();
-        // Adiciona uma variação de ±10% para não ser sempre o mesmo valor
-        int variacao = instancia.getRandom().nextInt(21) - 10; // -10 a +10
+    
+        int variacao = instancia.getRandom().nextInt(21) - 10; 
         int chanceFinal = chanceBase + variacao;
         
-        // Garante que a chance fique entre 0% e 100%
+    
         return Math.max(0, Math.min(100, chanceFinal));
     }
 

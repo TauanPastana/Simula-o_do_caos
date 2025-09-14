@@ -30,7 +30,7 @@ public class Utilidades {
         return random;
     }
     
-    // Fechar recursos quando não forem mais necessários
+
     public void closeResources() {
         if (scanner != null) {
             scanner.close();
